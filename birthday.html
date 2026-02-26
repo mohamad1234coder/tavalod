@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>تولدت مبارک</title>
+<style>
+body{
+    font-family: Tahoma;
+    margin:0;
+    text-align:center;
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+}
+
+.page{
+    display:none;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+.active{
+    display:flex;
+}
+
+h1{
+    font-size:40px;
+}
+
+.flowers{
+    font-size:40px;
+    margin:20px;
+}
+
+.box{
+    width:220px;
+    height:220px;
+    background:white;
+    border-radius:20px;
+    margin:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    transition:0.3s;
+}
+
+.box:hover{
+    transform:scale(1.05);
+}
+
+.options{
+    display:flex;
+    gap:30px;
+}
+
+.message{
+    max-width:700px;
+    font-size:20px;
+    line-height:1.8;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- صفحه خوش آمدگویی -->
+<div id="welcome" class="page active" onclick="goMenu()">
+    <div class="flowers">🌸🌹🌺🌷🌼</div>
+    <h1>سلام تولدت مبارک 🎉</h1>
+    <p>برای ادامه روی همین صفحه کلیک کنید</p>
+    <div class="flowers">🌸🌹🌺🌷🌼</div>
+</div>
+
+<!-- صفحه انتخاب -->
+<div id="menu" class="page">
+    <h1>یک گزینه را انتخاب کن</h1>
+    <div class="options">
+        <div class="box" onclick="playMusic()">
+            🎵🎁
+            <p>موزیک تولد</p>
+        </div>
+
+        <div class="box" onclick="showMotivation()">
+            🎁✨
+            <p>متن انگیزشی</p>
+        </div>
+    </div>
+</div>
+
+<!-- صفحه موزیک -->
+<div id="musicPage" class="page">
+    <h1>تولدت مبارک 💖</h1>
+    <p>این موزیک مخصوص توئه</p>
+    <audio controls autoplay>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+    <br><br>
+    <button onclick="goMenu()">بازگشت</button>
+</div>
+
+<!-- صفحه متن انگیزشی -->
+<div id="motivationPage" class="page">
+    <div class="message">
+        امروز یک شروع جدید برای توست.  
+        هر سالی که می‌گذرد یعنی تو قوی‌تر، با تجربه‌تر و آماده‌تر شده‌ای برای رسیدن به رویاهایت.  
+        شاید مسیر زندگی همیشه آسان نباشد، اما آدم‌هایی که ادامه می‌دهند همان‌هایی هستند که در نهایت به چیزهای بزرگ می‌رسند.  
+
+        به خودت ایمان داشته باش.  
+        تو می‌توانی آینده‌ای بسازی که همیشه در ذهن داشتی.  
+        هر قدم کوچک تو ارزشمند است و هر روز فرصتی است برای بهتر شدن.  
+
+        تولدت فقط یک روز خاص نیست، بلکه یادآور این است که تو برای هدف بزرگی در این دنیا هستی.  
+        پس ادامه بده، تلاش کن، و هیچ وقت تسلیم نشو.  
+        بهترین اتفاق‌ها هنوز در راهند. 🎁✨
+    </div>
+    <br>
+    <button onclick="goMenu()">بازگشت</button>
+</div>
+
+<script>
+function goMenu(){
+    hideAll();
+    document.getElementById("menu").classList.add("active");
+}
+
+function playMusic(){
+    hideAll();
+    document.getElementById("musicPage").classList.add("active");
+}
+
+function showMotivation(){
+    hideAll();
+    document.getElementById("motivationPage").classList.add("active");
+}
+
+function hideAll(){
+    document.querySelectorAll(".page").forEach(p=>{
+        p.classList.remove("active");
+    });
+}
+</script>
+
+</body>
+</html>

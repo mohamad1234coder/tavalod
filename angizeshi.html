@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>هدیه انگیزشی</title>
+
+
+<style>
+
+body{
+
+margin:0;
+font-family:tahoma;
+background:linear-gradient(135deg,#667eea,#764ba2);
+height:100vh;
+
+}
+
+
+.page{
+
+display:none;
+height:100vh;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+
+}
+
+
+.active{
+
+display:flex;
+animation:show 1s;
+
+}
+
+
+@keyframes show{
+
+from{
+opacity:0;
+transform:scale(.7);
+}
+
+to{
+opacity:1;
+transform:scale(1);
+}
+
+}
+
+
+
+h1{
+
+color:white;
+font-size:40px;
+
+}
+
+
+p{
+
+color:white;
+font-size:22px;
+line-height:2;
+
+}
+
+
+
+.box{
+
+background:white;
+padding:30px;
+margin:20px;
+border-radius:30px;
+cursor:pointer;
+font-size:25px;
+box-shadow:0 10px 30px #333;
+
+transition:.3s;
+
+}
+
+
+.box:hover{
+
+transform:scale(1.1);
+
+}
+
+
+
+.message{
+
+background:white;
+max-width:700px;
+padding:40px;
+border-radius:30px;
+font-size:24px;
+line-height:2;
+animation:show 1s;
+
+}
+
+
+
+.sticker{
+
+font-size:40px;
+
+}
+
+
+button{
+
+padding:15px 35px;
+border:0;
+border-radius:30px;
+background:#ff5e78;
+color:white;
+font-size:18px;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+
+<!-- صفحه اول -->
+
+<div id="home" class="page active" onclick="openMenu()">
+
+
+
+<div class="sticker">
+🌸🌹✨🌷
+</div>
+
+
+<h1>
+
+سلام ❤️
+
+</h1>
+
+
+<p>
+
+این سایت فقط برای خود تو طراحی شده 🌱
+
+<br>
+
+زمان گذاشته شده تا انگیزه‌ات بیشتر شود.
+
+<br>
+
+تو بهترین‌ها را لایق هستی ✨
+
+<br>
+
+هیچ وقت فراموش نکن که ارزشمند هستی.
+
+<br>
+
+برای ادامه روی همین صفحه کلیک کن
+
+</p>
+
+
+
+<div class="sticker">
+
+🌺🎁✨
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<!-- انتخاب -->
+
+
+<div id="menu" class="page">
+
+
+<h1>
+هدیه خودت را انتخاب کن 🎁
+</h1>
+
+
+<div class="box" onclick="showPoem()">
+
+📜 شعر و متن ادبی
+
+</div>
+
+
+
+<div class="box" onclick="showQuote()">
+
+✨ جمله انگیزشی
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- نمایش متن -->
+
+
+<div id="result" class="page">
+
+
+<div class="message">
+
+<div id="text"></div>
+
+</div>
+
+
+<br>
+
+
+<button onclick="openMenu()">
+
+بازگشت
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+let quotes=[];
+
+let poems=[];
+
+
+
+fetch("quotes.txt")
+
+.then(x=>x.text())
+
+.then(x=>{
+
+quotes=x.split("\n");
+
+});
+
+
+
+fetch("poems.txt")
+
+.then(x=>x.text())
+
+.then(x=>{
+
+poems=x.split("\n");
+
+});
+
+
+
+
+
+
+function hide(){
+
+document.querySelectorAll(".page")
+.forEach(x=>x.classList.remove("active"));
+
+}
+
+
+
+
+function openMenu(){
+
+hide();
+
+document.getElementById("menu")
+.classList.add("active");
+
+}
+
+
+
+
+
+function showQuote(){
+
+if(quotes.length === 0){
+
+showText("⏳ هنوز جملات بارگذاری نشده‌اند...");
+
+return;
+
+}
+
+let q=quotes[
+Math.floor(Math.random()*quotes.length)
+];
+
+
+showText(
+"✨💪🌱<br><br>"
++q+
+"<br><br>🌟❤️🔥"
+);
+
+}
+
+
+
+
+function showPoem(){
+
+if(poems.length === 0){
+
+showText("⏳ هنوز شعرها بارگذاری نشده‌اند...");
+
+return;
+
+}
+
+let p=poems[
+Math.floor(Math.random()*poems.length)
+];
+
+
+showText(
+"🌹📜✨<br><br>"
++p+
+"<br><br>🌸💫"
+);
+
+}
+
+
+
+
+function showText(t){
+
+hide();
+
+document.getElementById("result")
+.classList.add("active");
+
+
+document.getElementById("text")
+.innerHTML=t;
+
+
+}
+
+
+
+</script>
+
+
+</body>
+
+</html>
